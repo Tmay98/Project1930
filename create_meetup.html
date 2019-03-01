@@ -5,11 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Create Meetup</title>
+    <style>
+        .topcorner {
+            position: absolute;
+            top: 20px;
+            right: 90px;
+        }
+        .links {
+            padding-right: 30px;
+        }
+        #heading { 
+            background-color: lightskyblue
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Create Meetup</h1>
+    <h1 id="heading">Create Meetup</h1>
     <p>This is where you will create a new meet-up page</p>
+    <div class="topcorner">
+        <a href="group_page.html" class="links">Groups</a>
+        <a href="profile_page.html" class="links">Profile</a>
+        <a href="settings_page.html" class="links">Settings</a>
+    </div>
     <form>
         Name: <input type="text" name="MeetupName"><br><br>
         Date: <select name="month">
@@ -63,10 +81,10 @@
             <option value="2019">2019</option>
             <option value="2020">2020</option>
         </select><br><br>
-            Location: <input type="text" name="Location"><br><br>
-            <image src="images/map.png" alt="map"><br><br>
-                <input type="submit" value="Create Meetup">
-                <button>Cancel</button>
+        Location: <input type="text" name="Location"><br><br>
+        <image src="images/map.png" alt="map"><br><br>
+            <input type="submit" value="Create Meetup">
+            <button>Cancel</button>
     </form>
 </body>
 
