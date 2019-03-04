@@ -1,10 +1,125 @@
 <!DOCTYPE html>
+<html>
 <head>
-<title>group page</title>
+    <title>Group Page</title>
+    <style>
+        #group_name{
+            position: absolute;
+            width: 30vw;
+            height: 10vh;
+            text-align: center;
+            background-color: lightgrey;
+            border: 2px solid black;
+            left: 5vw
+        }
+        #group_summary{
+            position: absolute;
+            width: 30vw;
+            height: 10vh;
+            top: 12.5vh;
+            left: 5vw;
+            word-wrap: break-word;
+            background-color: lightgrey;
+            border: 2px solid black;
+        }
+        #meetups{
+            position: absolute;
+            width: 30vw;
+            height: 60vh;
+            top: 25vh;
+            left: 5vw;
+            word-wrap: break-word;
+            background-color: lightgrey;
+            border: 2px solid black;
+        }
+        #goback{
+            position: absolute;
+            width: 13.5vw;
+            height: 10vh;
+            top: 87.5vh;
+            left: 5vw
+        }
+        #createmeetup{
+            position: absolute;
+            width: 13.5vw;
+            height: 10vh;
+            top: 87.5vh;
+            left: 21.5vw;
+        }
+        #map{
+            position: absolute;
+            width: 30vw;
+            height: 22.5vh;
+            text-align: center;
+            background-color: lightgrey;
+            border: 2px solid black;
+            left: 40vw;
+        }
+        #discussion{
+            position: absolute;
+            width: 30vw;
+            height: 72.5vh;
+            text-align: center;
+            background-color: lightgrey;
+            border: 2px solid black;
+            left: 40vw;
+            top: 25vh
+        }
+        #users{
+            position: absolute;
+            width: 20vw;
+            height: 97.5vh;
+            text-align: center;
+            background-color: lightgrey;
+            border: 2px solid black;
+            left: 75vw;
+        }
+        
+    </style>
+
+
+
 </head>
 
-<body>
-<h2>This is the group page</h2>
 
+<body>
+    <div id='group_name'>
+        <h1>Group name</h1>
+    </div>
+
+    <div id='group_summary'>
+        <h4>Group summary:</h4>
+        <p>summary</p>
+    </div>
+
+    <div id='meetups'>
+    </div>
+
+    <a href = 'groups.html'>
+    <button id='goback' type="button">Go back to groups</button>
+    </a> 
+
+    <a href = 'createmeetup.html'>
+    <button id= 'createmeetup' type="button">Create Meetup</button>
+    </a>
+
+    <image id='map' src="images/map.png" alt="map"></image>
+
+    <div id='discussion'>
+
+    </div>
+
+    <div id='users'>
+        <h2>User list</h2>
+    </div>
+
+    
 
 </body>
+
+
+
+
+
+
+</html>
