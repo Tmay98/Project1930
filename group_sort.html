@@ -1,0 +1,78 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Group search</title>
+</head>
+<style>
+    .dropbtn {
+  background-color: rgb(74, 127, 207);
+  color: white;
+  padding: 16px;
+  font-size: 19px;
+  border:  2px solid white;
+}
+
+    .sort_list {
+    position: absolute;
+    display: inline-block;
+    top:50%;
+    left:42%;
+    width: fit-content;
+    border: 2px solid  rgb(74, 127, 207);
+    background-color: rgb(74, 127, 207);
+    color: white;
+    font-size: 25px;
+}
+
+   .sort_list_options {
+    display: none;
+    position: absolute;
+    background-color: rgb(74, 127, 207);
+    width: 180px;
+    border: 2px solid white;
+}
+
+    #headline{  
+    font-size: 55px;
+    border: 2px solid white;
+    color: white;
+    background-color:rgb(74, 127, 207);
+    width: 48%;
+    height: 7.5%;
+    top: 30%;
+    left: 26.5%;
+    text-align: center;
+    position: absolute;
+}
+    .options{
+    height: 50px;
+    width: 100px;
+    background-color: rgb(74, 127, 207);
+    color: white;
+}
+    #bodyID{
+    background-image: url("images/temporary.jpg");
+    background-size:cover;
+}
+.dropdown-content a:hover {background-color: #ddd;}
+
+.sort_list:hover .sort_list_options {display: block;}
+
+.dropdown:hover .dropbtn {background-color: rgb(74,127,207);}
+</style>
+<body id="bodyID">
+    <p id="headline">Search for groups in your area</p>
+    <div class="sort_list">
+        <button class="dropbtn">Sort groups by Radius</button>
+        <div class="sort_list_options">            
+            <button class="options" id="option1">2 km</button>
+            <button class="options" id="option2">5 km</button>
+            <button class="options" id="option3">10 km</button>
+        </div>
+    </div>
+    <script>
+    </script>
+</body>
+</html>
