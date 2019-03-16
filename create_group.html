@@ -1,0 +1,77 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create Group</title>
+    <style>
+        .topcorner {
+            position: absolute;
+            top: 20px;
+            right: 90px;
+        }
+        .links {
+            padding-right: 30px;
+        }
+        #heading { 
+            background-color: lightskyblue
+        }
+    </style>
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBoWW88WXnJm6ak-R7H8OabzgNWV6nCJ5M",
+        authDomain: "project1930-24a81.firebaseapp.com",
+        databaseURL: "https://project1930-24a81.firebaseio.com",
+        projectId: "project1930-24a81",
+        storageBucket: "project1930-24a81.appspot.com",
+        messagingSenderId: "819128019702"
+      };
+      firebase.initializeApp(config);
+    </script>
+
+</head>
+
+<body>
+<h1 id="heading">Create New Group</h1>
+    <p>This is where you will create a new group page</p>
+    <div class="topcorner">
+        <a href="group_page.html" class="links">Groups</a>
+        <a href="profile_page.html" class="links">Profile</a>
+        <a href="settings_page.html" class="links">Settings</a>
+    </div>
+
+    <form id="groupform">
+    Name: <br> <input type="text" name="groupname" id="groupname"><br><br>
+    location: <br> <input type="text" name="location" id="location"><br><br>
+    radius (km): <br> <input type="text" name="radius" id="radius"><br><br>
+    Group-Info: <br> <textarea type="text" name="info" id="info"></textarea><br><br>
+    <input type="submit" onclick=saveform() value="Create Group">
+            <button>Cancel</button>
+    </form>
+
+    <script>
+        function saveform(){
+            var groupname = document.getElementById("groupform").elements[0].value
+            var location = document.getElementById("groupform").elements[1].value
+            var radius = document.getElementById("groupform").elements[2].value
+            var groupinfo = document.getElementById("groupform").elements[3].value
+            firebase.database().ref("groups/" + groupname).set({
+                location: location,
+                radius: radius,
+                groupinfo: groupinfo
+            });
+        }
+
+    
+    firebase.database().ref("groups/" + groupname).set({
+        location: location,
+        radius: radius,
+        groupinfo: groupinfo
+    });
+    </script>
+
+</body>
