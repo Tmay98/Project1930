@@ -1,0 +1,39 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cost Calculator</title>
+    <style>
+        .topcorner {
+            position: absolute;
+            top: 20px;
+            right: 90px;
+        }
+        .links {
+            padding-right: 30px;
+        }
+        #heading { 
+            background-color: lightskyblue
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="heading">Cost Calculator</h1>
+    <p>Calculate the costs of groceries for each person</p>
+    <div class="topcorner">
+        <a href="group_page.html" class="links">Groups</a>
+        <a href="profile_page.html" class="links">Profile</a>
+        <a href="settings_page.html" class="links">Settings</a>
+    </div>
+    <form>
+        Number of people: <input type="text" name="NumberOfPeople"><br><br>
+        Total cost: <input type="text" name="Cost"><br><br>
+        Location: <input type="text" name="Location"><br><br>
+        <input type="submit" value="Calculate Cost">
+    </form>
+</body>
+
+</html>
