@@ -1,0 +1,45 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create Meetup</title>
+    <style>
+        .topcorner {
+            position: absolute;
+            top: 20px;
+            right: 90px;
+        }
+        .links {
+            padding-right: 30px;
+        }
+        #heading { 
+            background-color: lightskyblue
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="heading">Profile</h1>
+    <p>Fill out your profile page!</p>
+    <div class="topcorner">
+        <a href="group_page.html" class="links">Groups</a>
+        <a href="profile_page.html" class="links">Profile</a>
+    </div>
+    <form>
+        Name: <input type="text" name="name"><br><br>
+        Address: <input type="text" name="address"><br><br>
+        Dietary restrictions: <select name="restrictions">
+                <option value="vegan">Vegan</option>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="halal">Halal</option>
+                <option value="gluten">Gluten-Free</option>
+                <option value="pescatarian">Pescatarian</option>
+                </select><br><br>
+                <input type="submit" value="Create Meetup">
+                <button>Cancel</button>
+    </form>
+</body>
+
+</html>
