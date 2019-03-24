@@ -4,20 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create Meetup</title>
+    <title>Profile page</title>
     <style>
         .topcorner {
             position: absolute;
             top: 20px;
             right: 90px;
         }
+
         .links {
             padding-right: 30px;
         }
-        #heading { 
+
+        #heading {
             background-color: lightskyblue
         }
     </style>
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBoWW88WXnJm6ak-R7H8OabzgNWV6nCJ5M",
+            authDomain: "project1930-24a81.firebaseapp.com",
+            databaseURL: "https://project1930-24a81.firebaseio.com",
+            projectId: "project1930-24a81",
+            storageBucket: "project1930-24a81.appspot.com",
+            messagingSenderId: "819128019702"
+        };
+        firebase.initializeApp(config);
+    </script>
 </head>
 
 <body>
@@ -30,16 +45,38 @@
     <form>
         Name: <input type="text" name="name"><br><br>
         Address: <input type="text" name="address"><br><br>
-        Dietary restrictions: <select name="restrictions">
-                <option value="vegan">Vegan</option>
-                <option value="vegetarian">Vegetarian</option>
-                <option value="halal">Halal</option>
-                <option value="gluten">Gluten-Free</option>
-                <option value="pescatarian">Pescatarian</option>
-                </select><br><br>
-                <input type="submit" value="Create Meetup">
-                <button>Cancel</button>
+        Date of Birth (MM/DD/YY): <input type="text" name="date_of_birth"><br><br>
+        Dietary Restrictions: <select name="restrictions">
+            <option></option>
+            <option value="vegan">Vegan</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="halal">Halal</option>
+            <option value="gluten">Gluten-Free</option>
+            <option value="pescatarian">Pescatarian</option>
+        </select><br><br>
+        <input type="submit" value="Save" onclick=saveform()>
+        <button>Cancel</button>
     </form>
+
+    <script>
+        function saveform() {
+            var name = document.getElementById("groupform").elements[0].value
+            var address = document.getElementById("groupform").elements[1].value
+            var date_of_birth = document.getElementById("groupform").elements[2].value
+            var restrictions = document.getElementById("groupform").elements[3].value
+            firebase.database().ref("users/" + name).set({
+                address: address,
+                date_of_birth: date_of_birth,
+                restrictions: restrictions
+            });
+        }
+
+        firebase.database().ref("users/" + name).set({
+            address: address,
+            date_of_birth: date_of_birth,
+            restrictions: restrictions
+        });
+    </script>
 </body>
 
 </html>
