@@ -58,6 +58,8 @@
     <button onclick="saveform()">Send</button>
     <button>Cancel</button>
     <p id="saved"></p>
+    <p>Groups that I'm part of:</p>
+    <p id="groups"></p>
 
     <script>
         function saveform() {
@@ -72,7 +74,9 @@
                 restrictions: restrictions
             });
             document.getElementById("saved").innerHTML = "Your profile changes have been saved!"
+            localStorage.setItem("name", name)
         }
+        document.getElementById("groups").innerHTML = "Group 1"
     </script>
 </body>
 
