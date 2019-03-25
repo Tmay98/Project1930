@@ -42,7 +42,7 @@
         <a href="group_page.html" class="links">Groups</a>
         <a href="profile_page.html" class="links">Profile</a>
     </div>
-    <form>
+    <form id="form">
         Name: <input type="text" name="name"><br><br>
         Address: <input type="text" name="address"><br><br>
         Date of Birth (MM/DD/YY): <input type="text" name="date_of_birth"><br><br>
@@ -54,28 +54,25 @@
             <option value="gluten">Gluten-Free</option>
             <option value="pescatarian">Pescatarian</option>
         </select><br><br>
-        <input type="submit" value="Save" onclick=saveform()>
-        <button>Cancel</button>
     </form>
+    <button onclick="saveform()">Send</button>
+    <button>Cancel</button>
+    <p id="saved"></p>
 
     <script>
         function saveform() {
-            var name = document.getElementById("groupform").elements[0].value
-            var address = document.getElementById("groupform").elements[1].value
-            var date_of_birth = document.getElementById("groupform").elements[2].value
-            var restrictions = document.getElementById("groupform").elements[3].value
+            var form = document.getElementById("form");
+            var name = form.elements[0].value;
+            var address = form.elements[1].value;
+            var date_of_birth = form.elements[2].value;
+            var restrictions = form.elements[3].value;
             firebase.database().ref("users/" + name).set({
                 address: address,
                 date_of_birth: date_of_birth,
                 restrictions: restrictions
             });
+            document.getElementById("saved").innerHTML = "Your profile changes have been saved!"
         }
-
-        firebase.database().ref("users/" + name).set({
-            address: address,
-            date_of_birth: date_of_birth,
-            restrictions: restrictions
-        });
     </script>
 </body>
 
