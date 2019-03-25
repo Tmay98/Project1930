@@ -12,13 +12,14 @@
   padding: 16px;
   font-size: 19px;
   border:  2px solid white;
+  cursor: pointer;
 }
 
     .sort_list {
     position: absolute;
     display: inline-block;
     top:38%;
-    left:42%;
+    left:40%;
     width: fit-content;
     border: 2px solid  rgb(74, 127, 207);
     background-color: rgb(74, 127, 207);
@@ -95,8 +96,19 @@
     height:300px;
     top:63%;
     left:39.5%;
-    border: 2px solid white;
     position: absolute;
+}
+#locationbtn{
+    top: 36%;
+    left: 51%;
+    background-color: rgb(74, 127, 207);
+    position: absolute;
+    color: white;
+    font-size: 19px;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid white;
+    padding: 16px;
 }
 .dropdown-content a:hover {background-color: #ddd;}
 
@@ -108,7 +120,7 @@
     <p id="headline">Search for groups in your area</p>
     <img src="images/Arrow.png" id='reverse'>
     <div class="sort_list" id="mainbutton">
-        <button class="dropbtn">Sort groups by Radius</button>
+        <button class="dropbtn">Sort by Radius</button>
         <div class="sort_list_options">            
             <button class="options" id="option1">2 km</button>
             <button class="options" id="option2">5 km</button>
@@ -120,6 +132,9 @@
         <p id="box2"></p>
         <p id="box3"></p>
     </div>
+    <div>
+        <p id="locationbtn" onclick="getUserLocation()">Location Map</p>
+    </div>
     <div id="googleMap"></div>
     <script>
         function clickHandler(){
@@ -130,21 +145,32 @@
             document.getElementById('headline').style.display='none';
             document.getElementById('mainbutton').style.display='none';
             document.getElementById('googleMap').style.display='none';
+            document.getElementById('locationbtn').style.display='none';
         }
         function undoAction(){
             document.getElementById('grpinfo').style.display='none';
             document.getElementById('headline').style.display='initial';
             document.getElementById('mainbutton').style.display='initial'
             document.getElementById('googleMap').style.display='intial';
+            document.getElementById('locationbtn').style.display='intial';
 
         }
-        function userLocation() {
+        function getUserLocation(){
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(userLocation);
+            }
+            else{
+                googleMap.innerHTML='Unable to locate you'
+            }
+        }
+        function userLocation(position) {
             var mapProp = {
-                center:new google.maps.LatLng(49.283451,-123.115255),
+                center:new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
                 zoom:17,
                 };
                 var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-                }
+
+        }
         document.getElementById('option1').onclick= clickHandler;
         document.getElementById('option2').onclick= clickHandler;
         document.getElementById('option3').onclick= clickHandler;

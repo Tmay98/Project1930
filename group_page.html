@@ -21,8 +21,9 @@
             word-wrap: break-word;
             background-color: lightgrey;
             border: 2px solid black;
+            text-align: center
         }
-        #meetups{
+        #meetupslist{
             position: absolute;
             width: 30vw;
             height: 60vh;
@@ -31,6 +32,13 @@
             word-wrap: break-word;
             background-color: lightgrey;
             border: 2px solid black;
+            overflow-y:auto;
+            text-align: center
+        }
+        .meetup{
+            border: 2px solid black;
+            text-align: center;
+
         }
         #goback{
             position: absolute;
@@ -77,50 +85,104 @@
         
     </style>
 
-
+<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBoWW88WXnJm6ak-R7H8OabzgNWV6nCJ5M",
+        authDomain: "project1930-24a81.firebaseapp.com",
+        databaseURL: "https://project1930-24a81.firebaseio.com",
+        projectId: "project1930-24a81",
+        storageBucket: "project1930-24a81.appspot.com",
+        messagingSenderId: "819128019702"
+      };
+      firebase.initializeApp(config);
+    </script>
 
 </head>
 
 
-<body>
+<body onload="setinfo()">
     <div id='group_name'>
-        <h1>Group name</h1>
+        <h1 id='groupTitle'></h1>
     </div>
 
     <div id='group_summary'>
-        <h4>Group summary:</h4>
-        <p>summary</p>
+        <p id='summary'></p>
     </div>
 
-    <div id='meetups'>
-
+    <div id='meetupslist'>
+        <h2 style= 'text-align: center'>Meetups</h2>
+        
     </div>
 
-    <a href = 'groups.html'>
+    <a href = 'group_sort.html'>
     <button id='goback' type="button">Go back to groups</button>
     </a> 
 
-    <a href = 'create_meetup.html?groupname=groupname'>
+    <a href = 'create_meetup.html'>
     <button id= 'createmeetup' type="button">Create Meetup</button>
     </a>
 
     <image id='map' src="images/map.png" alt="map"></image>
 
     <div id='discussion'>
-
+        <h2 style= 'text-align: center'>discussion</h2>
     </div>
 
     <div id='users'>
         <h2>User list</h2>
     </div>
-
-    <script>
-        
-    </script>
     
 
 </body>
 
+<script>
+    function setinfo(){
+        groupname = localStorage.getItem("groupname");
+        grouplocation = localStorage.getItem("location");
+        radius = localStorage.getItem("radius");
+        groupinfo = localStorage.getItem("groupinfo");
+        document.getElementById('groupTitle').innerHTML = groupname;
+        document.getElementById('summary').innerHTML = 'location: ' + grouplocation + ' (' + radius + ' km)'  + '<br>' + groupinfo;
+       
+    }
+        var groupname = localStorage.getItem("groupname");
+        var meetupnames = []
+        var ref = firebase.database().ref("groups/" + groupname  + "/meetups");
+        ref.on(
+            "value",
+            function(snap){
+                console.log("---Names of all members in " + groupname + " group");
+                
+                snap.forEach(function(snap){
+                    var meetupname = snap.key;
+                    var day = snap.child("day").val();
+                    var location = snap.child("location").val();
+                    var month = snap.child("month").val();
+                    var year = snap.child("year").val();
+                    var hour = snap.child("hour").val();
+                    var minute = snap.child("minute").val();
+                    var meetup = document.createElement("div")
+                    meetup.setAttribute("class", "meetup");
+                    meetup.innerHTML = meetupname +'<br>'+'location: '+location+'<br>'+'date: '+day+' '+month+' '+year+'<br>'+'Time: '+hour+':'+minute+'<br>'
+                    meetup.onclick = function() {
+                    localStorage.setItem('meetupname', meetupname);
+                    localStorage.setItem('meetupday', day);
+                    localStorage.setItem('meetuplocation', location);
+                    localStorage.setItem('meetupmonth', month);
+                    localStorage.setItem('meetupyear', year);
+                    localStorage.setItem('meetuphour', hour);
+                    localStorage.setItem('meetupminute', minute);
+                    window.location.href="Meetup_page.html"
+                    };
+                    document.getElementById('meetupslist').appendChild(meetup)
+                });
+            
+            });
+
+        
+</script>
 
 
 

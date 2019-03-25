@@ -18,9 +18,24 @@
             background-color: lightskyblue
         }
     </style>
+
+<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBoWW88WXnJm6ak-R7H8OabzgNWV6nCJ5M",
+    authDomain: "project1930-24a81.firebaseapp.com",
+    databaseURL: "https://project1930-24a81.firebaseio.com",
+    projectId: "project1930-24a81",
+    storageBucket: "project1930-24a81.appspot.com",
+    messagingSenderId: "819128019702"
+  };
+  firebase.initializeApp(config);
+</script>
 </head>
 
 <body>
+    
     <h1 id="heading">Create Meetup</h1>
     <p>This is where you will create a new meet-up page</p>
     <div class="topcorner">
@@ -28,7 +43,7 @@
         <a href="profile_page.html" class="links">Profile</a>
         <a href="settings_page.html" class="links">Settings</a>
     </div>
-    <form>
+    <form id="meetupform">
         Name: <input type="text" name="MeetupName"><br><br>
         Date: <select name="month">
             <option value="January">January</option>
@@ -81,11 +96,94 @@
             <option value="2019">2019</option>
             <option value="2020">2020</option>
         </select><br><br>
+        Time: <select name="hour">
+            <option value="00">00</option>
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+        </select>
+        : <select name="minute">
+            <option value="00">00</option>
+            <option value="05">05</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
+            <option value="30">30</option>
+            <option value="35">35</option>
+            <option value="40">40</option>
+            <option value="45">45</option>
+            <option value="50">50</option>
+            <option value="55">55</option>
+        </select>
+        <br><br>
+        
         Location: <input type="text" name="Location"><br><br>
         <image src="images/map.png" alt="map"><br><br>
-            <input type="submit" value="Create Meetup">
+            <input type="submit" onclick=saveform() value="Create Meetup">
             <button>Cancel</button>
     </form>
+    
+    <script>
+        groupname = localStorage.getItem("groupname");
+        meetupname = ''
+        day = ''
+        month = ''
+        year = ''
+        hour = ''
+        minute = ''
+        function saveform(){
+            var meetupname = document.getElementById("meetupform").elements[0].value
+            var month = document.getElementById("meetupform").elements[1].value
+            var day = document.getElementById("meetupform").elements[2].value
+            var year = document.getElementById("meetupform").elements[3].value
+            var hour = document.getElementById("meetupform").elements[4].value
+            var minute = document.getElementById("meetupform").elements[5].value
+            var location = document.getElementById("meetupform").elements[6].value
+            var promise = firebase.database().ref("groups/" + groupname + '/meetups/' + meetupname).update({
+                location: location,
+                day: day,
+                month: month,
+                year: year,
+                hour: hour,
+                minute:  minute,
+            });
+
+            promise.then(function(){
+                window.location.href = "group_page.html"
+            })
+        }
+
+        firebase.database().ref("groups/" + groupname + '/meetups/' + meetupname).set({
+            location: location,
+            day: day,
+            month: month,
+            year: year,
+            hour: hour,
+            minute: minute,
+        })
+        
+    </script>
 </body>
 
 </html>

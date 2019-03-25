@@ -1,0 +1,71 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title id="meetupname">Create Meetup</title>
+    <style>
+        .topcorner {
+            position: absolute;
+            top: 20px;
+            right: 90px;
+        }
+        .links {
+            padding-right: 30px;
+        }
+        #heading { 
+            background-color: lightskyblue
+        }
+        #meetupinfo{
+            background-color:burlywood;
+            width:250px;
+        }
+    </style>
+
+<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBoWW88WXnJm6ak-R7H8OabzgNWV6nCJ5M",
+    authDomain: "project1930-24a81.firebaseapp.com",
+    databaseURL: "https://project1930-24a81.firebaseio.com",
+    projectId: "project1930-24a81",
+    storageBucket: "project1930-24a81.appspot.com",
+    messagingSenderId: "819128019702"
+  };
+  firebase.initializeApp(config);
+</script>
+</head>
+
+<body>
+    
+    <h1 id="heading">Meetup Page</h1>
+    <div class="topcorner">
+        <a href="group_page.html" class="links">Groups</a>
+        <a href="profile_page.html" class="links">Profile</a>
+        <a href="settings_page.html" class="links">Settings</a>
+    </div>
+    <div id=meetupinfo>
+    </div>
+    <div id=grocerylist>
+
+    </div>
+    <div id=map>
+
+    </div>
+    <script>
+        var meetupname = localStorage.getItem('meetupname')
+        var meetupday = localStorage.getItem('meetupday');
+        var meetuplocation = localStorage.getItem('meetuplocation');
+        var meetupmonth = localStorage.getItem('meetupmonth');
+        var meetupyear = localStorage.getItem('meetupyear');
+        var meetuphour = localStorage.getItem('meetuphour');
+        var meetupminute = localStorage.getItem('meetupminute');
+        document.getElementById('heading').innerHTML = meetupname
+        document.getElementById('meetupname').innerHTML = meetupname
+        document.getElementById('meetupinfo').innerHTML ='<h2> Meet-up Information</h2><h3>'+ 'Location: '+meetuplocation+'<br> Date: '+meetupday+'/'+meetupmonth+'/'+meetupyear+'<br> Time:'+meetuphour+':'+meetupminute + "</h3>"
+    </script>
+</body>
+
+</html>
