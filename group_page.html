@@ -145,9 +145,26 @@
         grouplocation = localStorage.getItem("location");
         radius = localStorage.getItem("radius");
         groupinfo = localStorage.getItem("groupinfo");
+        user = localStorage.getItem("name")
         document.getElementById('groupTitle').innerHTML = groupname;
         document.getElementById('summary').innerHTML = 'location: ' + grouplocation + ' (' + radius + ' km)'  + '<br>' + groupinfo;
-       
+        var promise = firebase.database().ref("groups/" + groupname + '/users/' + user + '/').update({
+            status: true
+        });
+       promise.then(function(){
+           var ref = firebase.database().ref("groups/" + groupname  + "/users/");
+            ref.on(
+                "value",
+                function(snap){
+                    
+                    snap.forEach(function(snap){
+                        var name = snap.key
+                        var user = document.createElement('h3')
+                        user.innerHTML = name
+                        document.getElementById('users').appendChild(user)
+                    });
+                })
+        })
     }
         var groupname = localStorage.getItem("groupname");
         var meetupnames = []
