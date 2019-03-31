@@ -41,6 +41,7 @@
     <div class="topcorner">
         <a href="group_page.html" class="links">Groups</a>
         <a href="profile_page.html" class="links">Profile</a>
+        <a href = "login.html" onclick="FirebaseAuth.getInstance().signOut()">Log out</a>
     </div>
     <form id="form">
         Name: <input type="text" name="name"><br><br>
@@ -58,25 +59,38 @@
     <button onclick="saveform()">Send</button>
     <button>Cancel</button>
     <p id="saved"></p>
-    <p>Groups that I'm part of:</p>
-    <p id="groups"></p>
 
     <script>
-        function saveform() {
-            var form = document.getElementById("form");
-            var name = form.elements[0].value;
-            var address = form.elements[1].value;
-            var date_of_birth = form.elements[2].value;
-            var restrictions = form.elements[3].value;
-            firebase.database().ref("users/" + name).set({
-                address: address,
-                date_of_birth: date_of_birth,
-                restrictions: restrictions
-            });
-            document.getElementById("saved").innerHTML = "Your profile changes have been saved!"
-            localStorage.setItem("name", name)
-        }
-        document.getElementById("groups").innerHTML = "Group 1"
+    firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+              // User is signed in.
+              var displayName = user.displayName;
+              var email = user.email;
+              var emailVerified = user.emailVerified;
+              var photoURL = user.photoURL;
+              var isAnonymous = user.isAnonymous;
+              var uid = user.uid;
+              var providerData = user.providerData;
+              // ...
+            } else {
+              // User is signed out.
+              // ...
+            }
+          });
+            function saveform() {
+                var form = document.getElementById("form");
+                var name = form.elements[0].value;
+                var address = form.elements[1].value;
+                var date_of_birth = form.elements[2].value;
+                var restrictions = form.elements[3].value;
+                firebase.database().ref("users/" + name).set({
+                    address: address,
+                    date_of_birth: date_of_birth,
+                    restrictions: restrictions
+                });
+                document.getElementById("saved").innerHTML = "Your profile changes have been saved!"
+                localStorage.setItem("name", name)
+            }
     </script>
 </body>
 
