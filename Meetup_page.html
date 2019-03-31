@@ -18,8 +18,47 @@
             background-color: lightskyblue
         }
         #meetupinfo{
-            background-color:burlywood;
-            width:250px;
+            text-align: center;
+            background-color: lightgray;
+            border: 2px solid black;
+            position: absolute;
+            width:25vw;
+            left: 2vw;
+            top: 10vh
+        }
+        #discussion{
+            position: absolute;
+            width: 30vw;
+            height: 80vh;
+            text-align: center;
+            border: 2px solid black;
+            left: 30vw;
+            top: 10vh;
+            overflow: auto
+        }
+        #map{
+            position: absolute;
+            width: 32vw;
+            height: 32vh;
+            text-align: center;
+            background-color: lightgrey;
+            border: 2px solid black;
+            left: 63vw;
+            top: 10vh;
+        }
+        #grocerylist{
+            position: absolute;
+            width: 30vw;
+            height: 60vh;
+            left: 2vw;
+            top: 30vh;
+            width:25vw;
+            background-color: lightgray;
+            border: 2px solid black
+
+        }
+        .header{
+            text-align: center
         }
     </style>
 
@@ -49,10 +88,16 @@
     <div id=meetupinfo>
     </div>
     <div id=grocerylist>
-
+        <h2 class=header>Grocery List</h2>
     </div>
     <div id=map>
 
+    </div>
+         <!--Begin Website Toolbox Forum Embed Code-->
+    <div id="discussion">
+        <iframe src="https://tmay.discussion.community/" style="width: 100%; height: 800px;"></iframe>
+    </div>
+        <!--End Website Toolbox Forum Embed Code-->
     </div>
     <script>
         var meetupname = localStorage.getItem('meetupname')
