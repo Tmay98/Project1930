@@ -57,7 +57,7 @@
         #map{
             position: absolute;
             width: 30vw;
-            height: 22.5vh;
+            height: 30vh;
             text-align: center;
             background-color: lightgrey;
             border: 2px solid black;
@@ -66,12 +66,13 @@
         #discussion{
             position: absolute;
             width: 30vw;
-            height: 72.5vh;
+            height: 65%;
             text-align: center;
             background-color: lightgrey;
             border: 2px solid black;
             left: 40vw;
-            top: 25vh
+            top: 32.5vh;
+            overflow: auto
         }
         #users{
             position: absolute;
@@ -100,9 +101,8 @@
     </script>
 
 </head>
-
-
 <body onload="setinfo()">
+
     <div id='group_name'>
         <h1 id='groupTitle'></h1>
     </div>
@@ -126,10 +126,12 @@
 
     <image id='map' src="images/map.png" alt="map"></image>
 
-    <div id='discussion'>
-        <h2 style= 'text-align: center'>discussion</h2>
+    <!--Begin Website Toolbox Forum Embed Code-->
+    <div id="discussion">
+        <iframe src="https://tmay.discussion.community/" style="width: 100%; height: 800px;"></iframe>
     </div>
-
+    <!--End Website Toolbox Forum Embed Code-->
+    
     <div id='users'>
         <h2>User list</h2>
     </div>
@@ -143,9 +145,26 @@
         grouplocation = localStorage.getItem("location");
         radius = localStorage.getItem("radius");
         groupinfo = localStorage.getItem("groupinfo");
+        user = localStorage.getItem("name")
         document.getElementById('groupTitle').innerHTML = groupname;
         document.getElementById('summary').innerHTML = 'location: ' + grouplocation + ' (' + radius + ' km)'  + '<br>' + groupinfo;
-       
+        var promise = firebase.database().ref("groups/" + groupname + '/users/' + user + '/').update({
+            status: true
+        });
+       promise.then(function(){
+           var ref = firebase.database().ref("groups/" + groupname  + "/users/");
+            ref.on(
+                "value",
+                function(snap){
+                    
+                    snap.forEach(function(snap){
+                        var name = snap.key
+                        var user = document.createElement('h3')
+                        user.innerHTML = name
+                        document.getElementById('users').appendChild(user)
+                    });
+                })
+        })
     }
         var groupname = localStorage.getItem("groupname");
         var meetupnames = []

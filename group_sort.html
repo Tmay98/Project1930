@@ -4,6 +4,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Group search</title>
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyBoWW88WXnJm6ak-R7H8OabzgNWV6nCJ5M",
+        authDomain: "project1930-24a81.firebaseapp.com",
+        databaseURL: "https://project1930-24a81.firebaseio.com",
+        projectId: "project1930-24a81",
+        storageBucket: "project1930-24a81.appspot.com",
+        messagingSenderId: "819128019702"
+    };
+    firebase.initializeApp(config);
+    </script>
 </head>
 <style>
     .dropbtn {
@@ -115,6 +128,12 @@
 .sort_list:hover .sort_list_options {display: block;}
 
 .dropdown:hover .dropbtn {background-color: rgb(74,127,207);}
+
+.group{
+    text-align: center;
+    border: 2px solid black;
+    background-color: grey
+}
 </style>
 <body id="bodyID">
     <p id="headline">Search for groups in your area</p>
@@ -128,9 +147,7 @@
         </div>
     </div>
     <div id="grpinfo">
-        <p id="box1"></p>
-        <p id="box2"></p>
-        <p id="box3"></p>
+        <h2 style= 'text-align: center'>Meetups</h2>
     </div>
     <div>
         <p id="locationbtn" onclick="clickHandlerLocationMap()">Location Map</p>
@@ -138,6 +155,7 @@
     <div id="googleMap"></div>
     <script>
         function clickHandler(){
+<<<<<<< HEAD
             // document.getElementById('box1').innerHTML='<p class ="boxes">Group 1</P>';
             // document.getElementById('box2').innerHTML='<p class ="boxes">Group 2</P>';
             // document.getElementById('box3').innerHTML='<p class ="boxes">Group 3</P>';
@@ -148,6 +166,38 @@
             // document.getElementById('locationbtn').style.display='none';
             google.maps.event.addListener('click', function(event) {
                     groupslocation();})
+=======
+            var ref = firebase.database().ref("groups");
+            ref.on(
+                "value",
+                function(snap){
+                    console.log('working');
+                    
+                    snap.forEach(function(snap){
+                        var groupname = snap.key;
+                        var location = snap.child("location").val();
+                        var radius = snap.child("radius").val();
+                        var groupinfo = snap.child("groupinfo").val();
+                        var group = document.createElement("div")
+                        group.setAttribute("class", "group");
+                        group.innerHTML = groupname+'<br>'+location+'<br>'+groupinfo
+                        group.onclick = function() {
+                            localStorage.setItem("groupname",groupname);
+                            localStorage.setItem("location",location);
+                            localStorage.setItem("radius",radius);
+                            localStorage.setItem("groupinfo",groupinfo);
+                            window.location.href="group_page.html"
+                        };
+                        document.getElementById('grpinfo').appendChild(group)
+                    });
+                
+                });
+            document.getElementById('grpinfo').style.display='initial';
+            document.getElementById('headline').style.display='none';
+            document.getElementById('mainbutton').style.display='none';
+            document.getElementById('googleMap').style.display='none';
+            document.getElementById('locationbtn').style.display='none';
+>>>>>>> 2629f5a5855d0c1393b1d18e20eba0bf7c97de19
         }
         function undoAction(){
             document.getElementById('grpinfo').style.display='none';
@@ -209,7 +259,12 @@
             var distance = R * c;
             return distance
         }
+<<<<<<< HEAD
         document.getElementById('option1').onclick= groupslocation(49.284542, -123.111646);
+=======
+        document.getElementById('grpinfo').style.display='none';
+        document.getElementById('option1').onclick= clickHandler;
+>>>>>>> 2629f5a5855d0c1393b1d18e20eba0bf7c97de19
         document.getElementById('option2').onclick= clickHandler;
         document.getElementById('option3').onclick= clickHandler;
         document.getElementById('reverse').onclick= undoAction;
