@@ -69,17 +69,17 @@
     font-size: 40px;
 }
 #box1{
-    top: 25%;
+    top: 20%;
     left: 15%;
     position: absolute; 
 }
 #box2{
-    top: 25%;
+    top: 20%;
     left: 40%;
     position: absolute;
 }
 #box3{
-    top: 25%;
+    top: 20%;
     left: 65%;
     position: absolute;
 }
@@ -90,14 +90,13 @@
     color: white;
     background-color: rgb(74, 127, 207);
     height: 30px;
-    width: px;
 
 }
 #googleMap{
     width:300px;
     height:300px;
     top:63%;
-    left:39.5%;
+    left:40.5%;
     position: absolute;
 }
 #locationbtn{
@@ -112,6 +111,7 @@
     border: 2px solid white;
     padding: 16px;
 }
+
 .dropdown-content a:hover {background-color: #ddd;}
 
 .sort_list:hover .sort_list_options {display: block;}
@@ -139,11 +139,23 @@
         <h2 style= 'text-align: center'>Meetups</h2>
     </div>
     <div>
-        <p id="locationbtn" onclick="getUserLocation()">Location Map</p>
+        <p id="locationbtn" onclick="clickHandlerLocationMap()">Location Map</p>
     </div>
     <div id="googleMap"></div>
     <script>
         function clickHandler(){
+<<<<<<< HEAD
+            // document.getElementById('box1').innerHTML='<p class ="boxes">Group 1</P>';
+            // document.getElementById('box2').innerHTML='<p class ="boxes">Group 2</P>';
+            // document.getElementById('box3').innerHTML='<p class ="boxes">Group 3</P>';
+            // document.getElementById('grpinfo').style.display='initial';
+            // document.getElementById('headline').style.display='none';
+            // document.getElementById('mainbutton').style.display='none';
+            // document.getElementById('googleMap').style.display='none';
+            // document.getElementById('locationbtn').style.display='none';
+            google.maps.event.addListener('click', function(event) {
+                    groupslocation();})
+=======
             var ref = firebase.database().ref("groups");
             ref.on(
                 "value",
@@ -174,13 +186,19 @@
             document.getElementById('mainbutton').style.display='none';
             document.getElementById('googleMap').style.display='none';
             document.getElementById('locationbtn').style.display='none';
+>>>>>>> 2629f5a5855d0c1393b1d18e20eba0bf7c97de19
         }
         function undoAction(){
             document.getElementById('grpinfo').style.display='none';
             document.getElementById('headline').style.display='initial';
             document.getElementById('mainbutton').style.display='initial'
             document.getElementById('googleMap').style.display='intial';
-            document.getElementById('locationbtn').style.display='intial';
+            document.getElementById('locationbtn').style.display='initial';
+
+        }
+        function clickHandlerLocationMap(){
+            userLocation(49.283451, -123.115255)
+            document.getElementById('googleMap').style.display="initial";
 
         }
         function getUserLocation(){
@@ -191,19 +209,55 @@
                 googleMap.innerHTML='Unable to locate you'
             }
         }
-        function userLocation(position) {
+        function userLocation(lat, lng) {
             var mapProp = {
-                center:new google.maps.LatLng(position.coords.latitude,position.coords.longitude),
-                zoom:17,
+                center:new google.maps.LatLng(lat, lng),
+                zoom:14,
                 };
                 var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
+                document.getElementById('googleMap').style.display="none";
+            
+                var marker = new google.maps.Marker({
+                    position: {lat: 49.283451, lng: -123.115255} ,
+                    map: map,
+                    title: 'Your location'
+                    });
+            
+                let groupicon = 'images/blue_MarkerG.png';
+                var marker = new google.maps.Marker({
+                    position: {lat: 49.284542, lng: -123.111646} ,
+                    map: map,
+                    title: 'Group',
+                    icon: groupicon,
+                });
         }
+        
+        
+        Number.prototype.toRad = function() {
+                return this * Math.PI / 180;
+        }
+        function distanceBetweenPositions(lat1, lng1, lat2, lng2){
+            var R = 6378;
+            let x = lat2-lat1;
+            let y = lng2-lng1;
+            var diff_lat = x.toRad();
+            var diff_lng = y.toRad();
+            var result = Math.sin(diff_lat/2) * Math.sin(diff_lat/2) + Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
+            Math.sin(diff_lng/2) * Math.sin(diff_lng/2);
+            var c = 2 * Math.atan2(Math.sqrt(result), Math.sqrt(1-result)); 
+            var distance = R * c;
+            return distance
+        }
+<<<<<<< HEAD
+        document.getElementById('option1').onclick= groupslocation(49.284542, -123.111646);
+=======
         document.getElementById('grpinfo').style.display='none';
         document.getElementById('option1').onclick= clickHandler;
+>>>>>>> 2629f5a5855d0c1393b1d18e20eba0bf7c97de19
         document.getElementById('option2').onclick= clickHandler;
         document.getElementById('option3').onclick= clickHandler;
         document.getElementById('reverse').onclick= undoAction;
+        
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbzw19v7KWUM4npiUo5xaiDu8Eqju-p8U&callback=userLocation">
     </script>
