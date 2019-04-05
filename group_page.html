@@ -1,210 +1,85 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : Outstretched 
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20131014
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Group Page</title>
-    <style>
-        #group_name{
-            position: absolute;
-            width: 30vw;
-            height: 10vh;
-            text-align: center;
-            background-color: lightgrey;
-            border: 2px solid black;
-            left: 5vw
-        }
-        #group_summary{
-            position: absolute;
-            width: 30vw;
-            height: 10vh;
-            top: 12.5vh;
-            left: 5vw;
-            word-wrap: break-word;
-            background-color: lightgrey;
-            border: 2px solid black;
-            text-align: center
-        }
-        #meetupslist{
-            position: absolute;
-            width: 30vw;
-            height: 60vh;
-            top: 25vh;
-            left: 5vw;
-            word-wrap: break-word;
-            background-color: lightgrey;
-            border: 2px solid black;
-            overflow-y:auto;
-            text-align: center
-        }
-        .meetup{
-            border: 2px solid black;
-            text-align: center;
+	<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+	<script src='firebase_setup.js'></script>
+	<script src='Group_Page.js'></script>
 
-        }
-        #goback{
-            position: absolute;
-            width: 13.5vw;
-            height: 10vh;
-            top: 87.5vh;
-            left: 5vw
-        }
-        #createmeetup{
-            position: absolute;
-            width: 13.5vw;
-            height: 10vh;
-            top: 87.5vh;
-            left: 21.5vw;
-        }
-        #map{
-            position: absolute;
-            width: 30vw;
-            height: 30vh;
-            text-align: center;
-            background-color: lightgrey;
-            border: 2px solid black;
-            left: 40vw;
-        }
-        #discussion{
-            position: absolute;
-            width: 30vw;
-            height: 65%;
-            text-align: center;
-            background-color: lightgrey;
-            border: 2px solid black;
-            left: 40vw;
-            top: 32.5vh;
-            overflow: auto
-        }
-        #users{
-            position: absolute;
-            width: 20vw;
-            height: 97.5vh;
-            text-align: center;
-            background-color: lightgrey;
-            border: 2px solid black;
-            left: 75vw;
-        }
-        
-    </style>
-
-<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyBoWW88WXnJm6ak-R7H8OabzgNWV6nCJ5M",
-        authDomain: "project1930-24a81.firebaseapp.com",
-        databaseURL: "https://project1930-24a81.firebaseio.com",
-        projectId: "project1930-24a81",
-        storageBucket: "project1930-24a81.appspot.com",
-        messagingSenderId: "819128019702"
-      };
-      firebase.initializeApp(config);
-    </script>
-
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+<link href="default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
+<!--[if IE 6]>
+<link href="default_ie6.css" rel="stylesheet" type="text/css" />
+<![endif]-->
 </head>
 <body onload="setinfo()">
-
-    <div id='group_name'>
-        <h1 id='groupTitle'></h1>
-    </div>
-
-    <div id='group_summary'>
-        <p id='summary'></p>
-    </div>
-
-    <div id='meetupslist'>
-        <h2 style= 'text-align: center'>Meetups</h2>
-        
-    </div>
-
-    <a href = 'group_sort.html'>
-    <button id='goback' type="button">Go back to groups</button>
-    </a> 
-
-    <a href = 'create_meetup.html'>
-    <button id= 'createmeetup' type="button">Create Meetup</button>
-    </a>
-
-    <image id='map' src="images/map.png" alt="map"></image>
-
-    <!--Begin Website Toolbox Forum Embed Code-->
-    <div id="discussion">
-        <iframe src="https://tmay.discussion.community/" style="width: 100%; height: 800px;"></iframe>
-    </div>
-    <!--End Website Toolbox Forum Embed Code-->
-    
-    <div id='users'>
-        <h2>User list</h2>
-    </div>
-    
-
+<div id="wrapper">
+	<div id="header-wrapper">
+		<div id="header" class="container">
+			<div id="logo">
+				<h1><a href="#">Grocer Together</a></h1>
+				<p>Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a></p>
+			</div>
+		</div>
+		<div id="menu" class="container">
+			<ul>
+					<li><a href="#" accesskey="1" title="">HomePage</a></li>
+					<li><a href="create_group.html" accesskey="2" title="">Create New Group</a></li>
+					<li><a href="group_sort.html" accesskey="3" title="">Search for Groups</a></li>
+					<li><a href="Group_Page.html" accesskey="4" title="">Your Group</a></li>
+					<li><a href="profile_page.html" accesskey="5" title="">Profile</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="page" class="container">
+		<div id="sidebar1">
+			<div id="meetupslist">
+				<h2>Meetups</h2>
+			</div>
+			<div id="box2">
+				<a href = 'create_meetup.html' id= 'createmeetup' class='button'>
+				Create Meetup
+				</a>
+			</div>
+		</div>
+			<div id="content">
+				<h2 id='groupTitle'>Group Title</h2>
+				<p id='summary'>Group Summary</p>
+				<p><img id='map' src="images/map.png" alt="map"></p>
+			</div>
+			<div id="sidebar2">
+				<div id= discussion>
+					<iframe src="https://tmay.discussion.community/" style="width: 100%; height: 800px;"></iframe>
+				</div>
+			</div>
+	</div>
+	<div id="portfolio-wrapper">
+		<div id="portfolio" class="container">
+			<div class="title">
+				<div id='users'>
+					<h3>User list</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="footer">
+	<p>&copy; Untitled. All rights reserved. Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>. Photos by <a href="http://fotogrph.com/">Fotogrph</a>.</p>
+</div>
 </body>
-
-<script>
-    function setinfo(){
-        groupname = localStorage.getItem("groupname");
-        grouplocation = localStorage.getItem("location");
-        radius = localStorage.getItem("radius");
-        groupinfo = localStorage.getItem("groupinfo");
-        user = localStorage.getItem("name")
-        document.getElementById('groupTitle').innerHTML = groupname;
-        document.getElementById('summary').innerHTML = 'location: ' + grouplocation + ' (' + radius + ' km)'  + '<br>' + groupinfo;
-        var promise = firebase.database().ref("groups/" + groupname + '/users/' + user + '/').update({
-            status: true
-        });
-       promise.then(function(){
-           var ref = firebase.database().ref("groups/" + groupname  + "/users/");
-            ref.on(
-                "value",
-                function(snap){
-                    
-                    snap.forEach(function(snap){
-                        var name = snap.key
-                        var user = document.createElement('h3')
-                        user.innerHTML = name
-                        document.getElementById('users').appendChild(user)
-                    });
-                })
-        })
-    }
-        var groupname = localStorage.getItem("groupname");
-        var meetupnames = []
-        var ref = firebase.database().ref("groups/" + groupname  + "/meetups");
-        ref.on(
-            "value",
-            function(snap){
-                console.log("---Names of all members in " + groupname + " group");
-                
-                snap.forEach(function(snap){
-                    var meetupname = snap.key;
-                    var day = snap.child("day").val();
-                    var location = snap.child("location").val();
-                    var month = snap.child("month").val();
-                    var year = snap.child("year").val();
-                    var hour = snap.child("hour").val();
-                    var minute = snap.child("minute").val();
-                    var meetup = document.createElement("div")
-                    meetup.setAttribute("class", "meetup");
-                    meetup.innerHTML = meetupname +'<br>'+'location: '+location+'<br>'+'date: '+day+' '+month+' '+year+'<br>'+'Time: '+hour+':'+minute+'<br>'
-                    meetup.onclick = function() {
-                    localStorage.setItem('meetupname', meetupname);
-                    localStorage.setItem('meetupday', day);
-                    localStorage.setItem('meetuplocation', location);
-                    localStorage.setItem('meetupmonth', month);
-                    localStorage.setItem('meetupyear', year);
-                    localStorage.setItem('meetuphour', hour);
-                    localStorage.setItem('meetupminute', minute);
-                    window.location.href="Meetup_page.html"
-                    };
-                    document.getElementById('meetupslist').appendChild(meetup)
-                });
-            
-            });
-
-        
-</script>
-
-
-
-
-
 </html>

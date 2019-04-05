@@ -1,189 +1,160 @@
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
 
+Name       : Outstretched 
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20131014
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create Meetup</title>
-    <style>
-        .topcorner {
-            position: absolute;
-            top: 20px;
-            right: 90px;
-        }
-        .links {
-            padding-right: 30px;
-        }
-        #heading { 
-            background-color: lightskyblue
-        }
-    </style>
-
-<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBoWW88WXnJm6ak-R7H8OabzgNWV6nCJ5M",
-    authDomain: "project1930-24a81.firebaseapp.com",
-    databaseURL: "https://project1930-24a81.firebaseio.com",
-    projectId: "project1930-24a81",
-    storageBucket: "project1930-24a81.appspot.com",
-    messagingSenderId: "819128019702"
-  };
-  firebase.initializeApp(config);
-</script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+	<script src='firebase_setup.js'></script>
+	<script src='create_meetup.js'></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+<link href="default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
+<!--[if IE 6]>
+<link href="default_ie6.css" rel="stylesheet" type="text/css" />
+<![endif]-->
 </head>
-
 <body>
-    
-    <h1 id="heading">Create Meetup</h1>
-    <p>This is where you will create a new meet-up page</p>
-    <div class="topcorner">
-        <a href="group_page.html" class="links">Groups</a>
-        <a href="profile_page.html" class="links">Profile</a>
-        <a href = "login.html" onclick="FirebaseAuth.getInstance().signOut()">Log out</a>
-    </div>
-    <form id="meetupform">
-        Name: <input type="text" name="MeetupName"><br><br>
-        Date: <select name="month">
-            <option value="January">January</option>
-            <option value="February">February</option>
-            <option value="March">March</option>
-            <option value="April">April</option>
-            <option value="May">May</option>
-            <option value="June">June</option>
-            <option value="July">July</option>
-            <option value="August">August</option>
-            <option value="September">September</option>
-            <option value="October">October</option>
-            <option value="November">November</option>
-            <option value="December">December</option>
-        </select>
-        <select name="day">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-            <option value="17">17</option>
-            <option value="18">18</option>
-            <option value="19">19</option>
-            <option value="20">20</option>
-            <option value="21">21</option>
-            <option value="22">22</option>
-            <option value="23">23</option>
-            <option value="24">24</option>
-            <option value="25">25</option>
-            <option value="26">26</option>
-            <option value="27">27</option>
-            <option value="28">28</option>
-            <option value="29">29</option>
-            <option value="30">30</option>
-            <option value="31">31</option>
-        </select>
-        <select name="year">
-            <option value="2019">2019</option>
-            <option value="2020">2020</option>
-        </select><br><br>
-        Time: <select name="hour">
-            <option value="00">00</option>
-            <option value="01">01</option>
-            <option value="02">02</option>
-            <option value="03">03</option>
-            <option value="04">04</option>
-            <option value="05">05</option>
-            <option value="06">06</option>
-            <option value="07">07</option>
-            <option value="08">08</option>
-            <option value="09">09</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-            <option value="17">17</option>
-            <option value="18">18</option>
-            <option value="19">19</option>
-            <option value="20">20</option>
-            <option value="21">21</option>
-            <option value="22">22</option>
-            <option value="23">23</option>
-        </select>
-        : <select name="minute">
-            <option value="00">00</option>
-            <option value="05">05</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-            <option value="25">25</option>
-            <option value="30">30</option>
-            <option value="35">35</option>
-            <option value="40">40</option>
-            <option value="45">45</option>
-            <option value="50">50</option>
-            <option value="55">55</option>
-        </select>
-        <br><br>
-        
-        Location: <input type="text" name="Location"><br><br>
-        <image src="images/map.png" alt="map"><br><br>
-            <input type="submit" onclick=saveform() value="Create Meetup">
-            <button>Cancel</button>
-    </form>
-    
-    <script>
-        groupname = localStorage.getItem("groupname");
-        meetupname = ''
-        day = ''
-        month = ''
-        year = ''
-        hour = ''
-        minute = ''
-        function saveform(){
-            var meetupname = document.getElementById("meetupform").elements[0].value
-            var month = document.getElementById("meetupform").elements[1].value
-            var day = document.getElementById("meetupform").elements[2].value
-            var year = document.getElementById("meetupform").elements[3].value
-            var hour = document.getElementById("meetupform").elements[4].value
-            var minute = document.getElementById("meetupform").elements[5].value
-            var location = document.getElementById("meetupform").elements[6].value
-            var promise = firebase.database().ref("groups/" + groupname + '/meetups/' + meetupname).update({
-                location: location,
-                day: day,
-                month: month,
-                year: year,
-                hour: hour,
-                minute:  minute,
-            });
+<div id="wrapper">
+	<div id="header-wrapper">
+		<div id="header" class="container">
+			<div id="logo">
+				<h1><a href="#">Grocer Together</a></h1>
+				<p>Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a></p>
+			</div>
+		</div>
+		<div id="menu" class="container">
+			<ul>
+				<li><a href="#" accesskey="1" title="">HomePage</a></li>
+				<li><a href="create_group.html" accesskey="2" title="">Create New Group</a></li>
+				<li><a href="group_sort.html" accesskey="3" title="">Search for Groups</a></li>
+				<li><a href="Group_Page.html" accesskey="4" title="">Your Group</a></li>
+				<li><a href="profile_page.html" accesskey="5" title="">Profile</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="page" class="container">
+			<div style='height: 600px' id="content">
+				<h2 id='groupTitle'>Create new meetup</h2>
+				<form id="meetupform">
+						Name: <input type="text" name="MeetupName"><br><br>
+						Date: <select name="month">
+							<option value="January">January</option>
+							<option value="February">February</option>
+							<option value="March">March</option>
+							<option value="April">April</option>
+							<option value="May">May</option>
+							<option value="June">June</option>
+							<option value="July">July</option>
+							<option value="August">August</option>
+							<option value="September">September</option>
+							<option value="October">October</option>
+							<option value="November">November</option>
+							<option value="December">December</option>
+						</select>
+						<select name="day">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+							<option value="31">31</option>
+						</select>
+						<select name="year">
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+						</select><br><br>
+						Time: <select name="hour">
+							<option value="00">00</option>
+							<option value="01">01</option>
+							<option value="02">02</option>
+							<option value="03">03</option>
+							<option value="04">04</option>
+							<option value="05">05</option>
+							<option value="06">06</option>
+							<option value="07">07</option>
+							<option value="08">08</option>
+							<option value="09">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+						</select>
+						: <select name="minute">
+							<option value="00">00</option>
+							<option value="05">05</option>
+							<option value="10">10</option>
+							<option value="15">15</option>
+							<option value="20">20</option>
+							<option value="25">25</option>
+							<option value="30">30</option>
+							<option value="35">35</option>
+							<option value="40">40</option>
+							<option value="45">45</option>
+							<option value="50">50</option>
+							<option value="55">55</option>
+						</select>
+						<br><br>
+						
+						Location: <input type="text" name="Location"><br><br>
+						<image src="images/map.png" alt="map"><br><br>
+							<input type="submit" onclick=saveform() value="Create Meetup">
+							<button>Cancel</button>
+					</form>
+			</div>
 
-            promise.then(function(){
-                window.location.href = "group_page.html"
-            })
-        }
-
-        firebase.database().ref("groups/" + groupname + '/meetups/' + meetupname).set({
-            location: location,
-            day: day,
-            month: month,
-            year: year,
-            hour: hour,
-            minute: minute,
-        })
-        
-    </script>
+	</div>
+	</div>
+</div>
+<div id="footer">
+	<p>&copy; Untitled. All rights reserved. Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>. Photos by <a href="http://fotogrph.com/">Fotogrph</a>.</p>
+</div>
 </body>
-
 </html>
