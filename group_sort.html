@@ -155,18 +155,6 @@
     <div id="googleMap"></div>
     <script>
         function clickHandler(){
-<<<<<<< HEAD
-            // document.getElementById('box1').innerHTML='<p class ="boxes">Group 1</P>';
-            // document.getElementById('box2').innerHTML='<p class ="boxes">Group 2</P>';
-            // document.getElementById('box3').innerHTML='<p class ="boxes">Group 3</P>';
-            // document.getElementById('grpinfo').style.display='initial';
-            // document.getElementById('headline').style.display='none';
-            // document.getElementById('mainbutton').style.display='none';
-            // document.getElementById('googleMap').style.display='none';
-            // document.getElementById('locationbtn').style.display='none';
-            google.maps.event.addListener('click', function(event) {
-                    groupslocation();})
-=======
             var ref = firebase.database().ref("groups");
             ref.on(
                 "value",
@@ -197,7 +185,6 @@
             document.getElementById('mainbutton').style.display='none';
             document.getElementById('googleMap').style.display='none';
             document.getElementById('locationbtn').style.display='none';
->>>>>>> 2629f5a5855d0c1393b1d18e20eba0bf7c97de19
         }
         function undoAction(){
             document.getElementById('grpinfo').style.display='none';
@@ -259,12 +246,9 @@
             var distance = R * c;
             return distance
         }
-<<<<<<< HEAD
-        document.getElementById('option1').onclick= groupslocation(49.284542, -123.111646);
-=======
+        //document.getElementById('option1').onclick= groupslocation(49.284542, -123.111646);
         document.getElementById('grpinfo').style.display='none';
         document.getElementById('option1').onclick= clickHandler;
->>>>>>> 2629f5a5855d0c1393b1d18e20eba0bf7c97de19
         document.getElementById('option2').onclick= clickHandler;
         document.getElementById('option3').onclick= clickHandler;
         document.getElementById('reverse').onclick= undoAction;
