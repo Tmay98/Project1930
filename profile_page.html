@@ -1,100 +1,78 @@
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
 
+Name       : Outstretched 
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20131014
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Profile page</title>
-    <style>
-        .topcorner {
-            position: absolute;
-            top: 20px;
-            right: 90px;
-        }
-
-        .links {
-            padding-right: 30px;
-        }
-
-        #heading {
-            background-color: lightskyblue
-        }
-    </style>
-    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
-    <script src='firebase_setup.js'></script>
-    <script type="text/javascript">
-        var uid = null
-        var displayName = null
-        initApp = function () {
-            firebase.auth().onAuthStateChanged(function (user) {
-                if (user) {
-                    // User is signed in.
-                    displayName = user.displayName;
-                    uid = user.uid;
-                    user.getIdToken().then(function (accessToken) {
-                        document.getElementById('name').value = displayName;
-                        firebase.database().ref().child("users/" + uid + "/address").on("value", function (snap) { document.getElementById('address').value = snap.val() })
-                        firebase.database().ref().child("users/" + uid + "/date_of_birth").on("value", function (snap) { document.getElementById('date_of_birth').value = snap.val() })
-                        firebase.database().ref().child("users/" + uid + "/restrictions").on("value", function (snap) { document.getElementById('restrictions').value = snap.val() })
-                    });
-
-                } else {
-
-                }
-            }, function (error) {
-                console.log(error);
-            });
-        };
-
-        window.addEventListener('load', function () {
-            initApp()
-        });
-    </script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+	<script src='firebase_setup.js'></script>
+	<script src='profile_page.js'></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+<link href="default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
+<!--[if IE 6]>
+<link href="default_ie6.css" rel="stylesheet" type="text/css" />
+<![endif]-->
 </head>
-
 <body>
-    <h1 id="heading">Profile</h1>
-    <p>Fill out your profile page!</p>
-    <div class="topcorner">
-        <a href="group_page.html" class="links">Groups</a>
-        <a href="profile_page.html" class="links">Profile</a>
-        <a href="login.html" onclick="FirebaseAuth.getInstance().signOut()">Log out</a>
-    </div>
-    <form id="form">
-        Name: <input type="text" id="name"><br><br>
-        Address: <input type="text" id="address"><br><br>
-        Date of Birth (MM/DD/YY): <input type="text" id="date_of_birth"><br><br>
-        Dietary Restrictions: <select id="restrictions">
-            <option></option>
-            <option value="vegan">Vegan</option>
-            <option value="vegetarian">Vegetarian</option>
-            <option value="halal">Halal</option>
-            <option value="gluten">Gluten-Free</option>
-            <option value="pescatarian">Pescatarian</option>
-        </select><br><br>
-    </form>
-    <button onclick="saveform()">Send</button>
-    <button>Cancel</button>
-    <p id="saved"></p>
+<div id="wrapper">
+	<div id="header-wrapper">
+		<div id="header" class="container">
+			<div id="logo">
+				<h1><a href="#">Grocer Together</a></h1>
+				<p>Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a></p>
+			</div>
+		</div>
+		<div id="menu" class="container">
+			<ul>
+				<li><a href="#" accesskey="1" title="">HomePage</a></li>
+				<li><a href="create_group.html" accesskey="2" title="">Create New Group</a></li>
+				<li><a href="group_sort.html" accesskey="3" title="">Search for Groups</a></li>
+				<li><a href="Group_Page.html" accesskey="4" title="">Your Group</a></li>
+				<li><a href="profile_page.html" accesskey="5" title="">Profile</a></li>
+				<li><a href="login.html" onclick="FirebaseAuth.getInstance().signOut()">Log out</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="page" class="container">
+			<div style='height: 600px' id="content">
+				<h2 id='groupTitle'>Profile</h2>
+					<p>Fill out your profile page!</p>
+					<form id="form">
+						Name: <input type="text" id="name"><br><br>
+						Address: <input type="text" id="address"><br><br>
+						Date of Birth (MM/DD/YY): <input type="text" id="date_of_birth"><br><br>
+						Dietary Restrictions: <select id="restrictions">
+							<option></option>
+							<option value="vegan">Vegan</option>
+							<option value="vegetarian">Vegetarian</option>
+							<option value="halal">Halal</option>
+							<option value="gluten">Gluten-Free</option>
+							<option value="pescatarian">Pescatarian</option>
+						</select><br><br>
+					</form>
+				<button onclick="saveform()">Send</button>
+				<button>Cancel</button>
+				<p id="saved"></p>
+			</div>
 
-    <script>
-        function saveform() {
-            var database = firebase.database();
-            var form = document.getElementById("form");
-            var name = form.elements[0].value;
-            var address = form.elements[1].value;
-            var date_of_birth = form.elements[2].value;
-            var restrictions = form.elements[3].value;
-            firebase.database().ref("users/" + uid).set({
-                name: displayName,
-                address: address,
-                date_of_birth: date_of_birth,
-                restrictions: restrictions
-            });
-            document.getElementById("saved").innerHTML = "Your profile changes have been saved!"
-            localStorage.setItem("name", name)
-        }
-    </script>
+	</div>
+	</div>
+</div>
+<div id="footer">
+	<p>&copy; Untitled. All rights reserved. Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>. Photos by <a href="http://fotogrph.com/">Fotogrph</a>.</p>
+</div>
 </body>
-
 </html>
