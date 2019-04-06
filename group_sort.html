@@ -3,9 +3,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Group search</title>
+    <title>group search</title>
     <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
     <script src='firebase_setup.js'></script>
+    <script src="group_sort.js"></script>
+    <link rel="icon" type="image/png" href="images/icon.png"/>
 </head>
 <style>
     .dropbtn {
@@ -27,14 +29,6 @@
     background-color: rgb(74, 127, 207);
     color: white;
     font-size: 25px;
-}
-
-   .sort_list_options {
-    display: none;
-    position: absolute;
-    background-color: rgb(74, 127, 207);
-    width: 180px;
-    border: 2px solid white;
 }
 
     #headline{  
@@ -59,39 +53,6 @@
     background-image: url("images/temporary.jpg");
     background-size:cover;
 }
-.boxes{
-    background-color: rgb(74, 127, 207);
-    height: 400px;
-    width: 250px;
-    color : white;
-    border: 2px solid white;
-    text-align: center;
-    font-size: 40px;
-}
-#box1{
-    top: 20%;
-    left: 15%;
-    position: absolute; 
-}
-#box2{
-    top: 20%;
-    left: 40%;
-    position: absolute;
-}
-#box3{
-    top: 20%;
-    left: 65%;
-    position: absolute;
-}
-#reverse{
-    top: 1%;
-    right: 1%;
-    position: absolute;
-    color: white;
-    background-color: rgb(74, 127, 207);
-    height: 30px;
-
-}
 #googleMap{
     width:300px;
     height:300px;
@@ -100,7 +61,7 @@
     position: absolute;
 }
 #locationbtn{
-    top: 36%;
+    top: 38.25%;
     left: 51%;
     background-color: rgb(74, 127, 207);
     position: absolute;
@@ -111,138 +72,26 @@
     border: 2px solid white;
     padding: 16px;
 }
-
-.dropdown-content a:hover {background-color: #ddd;}
-
-.sort_list:hover .sort_list_options {display: block;}
-
-.dropdown:hover .dropbtn {background-color: rgb(74,127,207);}
-
 .group{
     text-align: center;
     border: 2px solid black;
-    background-color: grey
+    background-color: grey;
+    width: 17%;
+    height: 10%;
 }
 </style>
 <body id="bodyID">
     <p id="headline">Search for groups in your area</p>
-    <img src="images/Arrow.png" id='reverse'>
     <div class="sort_list" id="mainbutton">
-        <button class="dropbtn">Sort by Radius</button>
-        <div class="sort_list_options">            
-            <button class="options" id="option1">2 km</button>
-            <button class="options" id="option2">5 km</button>
-            <button class="options" id="option3">10 km</button>
-        </div>
+        <button class="dropbtn" onclick="clickHandler(), removeElem()">See groups list</button>
     </div>
     <div id="grpinfo">
-        <h2 style= 'text-align: center'>Meetups</h2>
+        <h2 style= 'text-align: center' id="meetups"></h2>
     </div>
     <div>
-        <p id="locationbtn" onclick="clickHandlerLocationMap()">Location Map</p>
+        <button id="locationbtn" onclick="clickHandlerLocationMap()">Location Map</button>
     </div>
     <div id="googleMap"></div>
-    <script>
-        function clickHandler(){
-            var ref = firebase.database().ref("groups");
-            ref.on(
-                "value",
-                function(snap){
-                    console.log('working');
-                    
-                    snap.forEach(function(snap){
-                        var groupname = snap.key;
-                        var location = snap.child("location").val();
-                        var radius = snap.child("radius").val();
-                        var groupinfo = snap.child("groupinfo").val();
-                        var group = document.createElement("div")
-                        group.setAttribute("class", "group");
-                        group.innerHTML = groupname+'<br>'+location+'<br>'+groupinfo
-                        group.onclick = function() {
-                            localStorage.setItem("groupname",groupname);
-                            localStorage.setItem("location",location);
-                            localStorage.setItem("radius",radius);
-                            localStorage.setItem("groupinfo",groupinfo);
-                            window.location.href="group_page.html"
-                        };
-                        document.getElementById('grpinfo').appendChild(group)
-                    });
-                
-                });
-            document.getElementById('grpinfo').style.display='initial';
-            document.getElementById('headline').style.display='none';
-            document.getElementById('mainbutton').style.display='none';
-            document.getElementById('googleMap').style.display='none';
-            document.getElementById('locationbtn').style.display='none';
-        }
-        function undoAction(){
-            document.getElementById('grpinfo').style.display='none';
-            document.getElementById('headline').style.display='initial';
-            document.getElementById('mainbutton').style.display='initial'
-            document.getElementById('googleMap').style.display='intial';
-            document.getElementById('locationbtn').style.display='initial';
-
-        }
-        function clickHandlerLocationMap(){
-            userLocation(49.283451, -123.115255)
-            document.getElementById('googleMap').style.display="initial";
-
-        }
-        function getUserLocation(){
-            if(navigator.geolocation){
-                navigator.geolocation.getCurrentPosition(userLocation);
-            }
-            else{
-                googleMap.innerHTML='Unable to locate you'
-            }
-        }
-        function userLocation(lat, lng) {
-            var mapProp = {
-                center:new google.maps.LatLng(lat, lng),
-                zoom:14,
-                };
-                var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-                document.getElementById('googleMap').style.display="none";
-            
-                var marker = new google.maps.Marker({
-                    position: {lat: 49.283451, lng: -123.115255} ,
-                    map: map,
-                    title: 'Your location'
-                    });
-            
-                let groupicon = 'images/blue_MarkerG.png';
-                var marker = new google.maps.Marker({
-                    position: {lat: 49.284542, lng: -123.111646} ,
-                    map: map,
-                    title: 'Group',
-                    icon: groupicon,
-                });
-        }
-        
-        
-        Number.prototype.toRad = function() {
-                return this * Math.PI / 180;
-        }
-        function distanceBetweenPositions(lat1, lng1, lat2, lng2){
-            var R = 6378;
-            let x = lat2-lat1;
-            let y = lng2-lng1;
-            var diff_lat = x.toRad();
-            var diff_lng = y.toRad();
-            var result = Math.sin(diff_lat/2) * Math.sin(diff_lat/2) + Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
-            Math.sin(diff_lng/2) * Math.sin(diff_lng/2);
-            var c = 2 * Math.atan2(Math.sqrt(result), Math.sqrt(1-result)); 
-            var distance = R * c;
-            return distance
-        }
-        //document.getElementById('option1').onclick= groupslocation(49.284542, -123.111646);
-        document.getElementById('grpinfo').style.display='none';
-        document.getElementById('option1').onclick= clickHandler;
-        document.getElementById('option2').onclick= clickHandler;
-        document.getElementById('option3').onclick= clickHandler;
-        document.getElementById('reverse').onclick= undoAction;
-        
-    </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbzw19v7KWUM4npiUo5xaiDu8Eqju-p8U&callback=userLocation">
     </script>
 </body>
