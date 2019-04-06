@@ -1,98 +1,73 @@
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : Outstretched 
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20131014
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>group search</title>
-    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
-    <script src='firebase_setup.js'></script>
-    <script src="group_sort.js"></script>
-    <link rel="icon" type="image/png" href="images/icon.png"/>
+	<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+	<script src='firebase_setup.js'></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbzw19v7KWUM4npiUo5xaiDu8Eqju-p8U&callback=userLocation"></script>
+	<script src='group_sort.js'></script>
+	
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+<link href="default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
+<!--[if IE 6]>
+<link href="default_ie6.css" rel="stylesheet" type="text/css" />
+<![endif]-->
 </head>
-<style>
-    .dropbtn {
-  background-color: rgb(74, 127, 207);
-  color: white;
-  padding: 16px;
-  font-size: 19px;
-  border:  2px solid white;
-  cursor: pointer;
-}
-
-    .sort_list {
-    position: absolute;
-    display: inline-block;
-    top:38%;
-    left:40%;
-    width: fit-content;
-    border: 2px solid  rgb(74, 127, 207);
-    background-color: rgb(74, 127, 207);
-    color: white;
-    font-size: 25px;
-}
-
-    #headline{  
-    font-size: 55px;
-    border: 2px solid white;
-    color: white;
-    background-color:rgb(74, 127, 207);
-    width: 48%;
-    height: 7.5%;
-    top: 20%;
-    left: 26.5%;
-    text-align: center;
-    position: absolute;
-}
-    .options{
-    height: 50px;
-    width: 100px;
-    background-color: rgb(74, 127, 207);
-    color: white;
-}
-    #bodyID{
-    background-image: url("images/temporary.jpg");
-    background-size:cover;
-}
-#googleMap{
-    width:300px;
-    height:300px;
-    top:63%;
-    left:40.5%;
-    position: absolute;
-}
-#locationbtn{
-    top: 38.25%;
-    left: 51%;
-    background-color: rgb(74, 127, 207);
-    position: absolute;
-    color: white;
-    font-size: 19px;
-    text-align: center;
-    cursor: pointer;
-    border: 2px solid white;
-    padding: 16px;
-}
-.group{
-    text-align: center;
-    border: 2px solid black;
-    background-color: grey;
-    width: 17%;
-    height: 10%;
-}
-</style>
-<body id="bodyID">
-    <p id="headline">Search for groups in your area</p>
-    <div class="sort_list" id="mainbutton">
-        <button class="dropbtn" onclick="clickHandler(), removeElem()">See groups list</button>
-    </div>
-    <div id="grpinfo">
-        <h2 style= 'text-align: center' id="meetups"></h2>
-    </div>
-    <div>
-        <button id="locationbtn" onclick="clickHandlerLocationMap()">Location Map</button>
-    </div>
-    <div id="googleMap"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbzw19v7KWUM4npiUo5xaiDu8Eqju-p8U&callback=userLocation">
-    </script>
+<body>
+<div id="wrapper">
+	<div id="header-wrapper">
+		<div id="header" class="container">
+			<div id="logo">
+				<h1><a href="#">Grocer Together</a></h1>
+				<p>Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a></p>
+			</div>
+		</div>
+		<div id="menu" class="container">
+			<ul>
+					<li><a href="#" accesskey="1" title="">HomePage</a></li>
+					<li><a href="create_group.html" accesskey="2" title="">Create New Group</a></li>
+					<li><a href="group_sort.html" accesskey="3" title="">Search for Groups</a></li>
+					<li><a href="Group_Page.html" accesskey="4" title="">Your Group</a></li>
+					<li><a href="profile_page.html" accesskey="5" title="">Profile</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="page" class="container">
+		<div id="sidebar1">
+			<div id="grpinfo">
+					<h2>Groups</h2>
+			</div>
+		</div>
+	
+			<div id="content">
+				<h2 id='groupTitle'>Search for a group</h2>
+				<button id="locationbtn" onclick="clickHandlerLocationMap()">Location Map</button>
+				<div id="googleMap"></div>
+			</div>
+			<div id="sidebar2">
+				<div id= discussion>
+					<iframe src="https://tmay.discussion.community/" style="width: 100%; height: 800px;"></iframe>
+				</div>
+			</div>
+	</div>
+</div>
+<div id="footer">
+	<p>&copy; Untitled. All rights reserved. Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>. Photos by <a href="http://fotogrph.com/">Fotogrph</a>.</p>
+</div>
 </body>
 </html>
