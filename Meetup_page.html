@@ -1,105 +1,73 @@
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
 
+Name       : Outstretched 
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20131014
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title id="meetupname">Create Meetup</title>
-    <style>
-        .topcorner {
-            position: absolute;
-            top: 20px;
-            right: 90px;
-        }
-        .links {
-            padding-right: 30px;
-        }
-        #heading { 
-            background-color: lightskyblue
-        }
-        #meetupinfo{
-            text-align: center;
-            background-color: lightgray;
-            border: 2px solid black;
-            position: absolute;
-            width:25vw;
-            left: 2vw;
-            top: 10vh
-        }
-        #discussion{
-            position: absolute;
-            width: 30vw;
-            height: 80vh;
-            text-align: center;
-            border: 2px solid black;
-            left: 30vw;
-            top: 10vh;
-            overflow: auto
-        }
-        #map{
-            position: absolute;
-            width: 32vw;
-            height: 32vh;
-            text-align: center;
-            background-color: lightgrey;
-            border: 2px solid black;
-            left: 63vw;
-            top: 10vh;
-        }
-        #grocerylist{
-            position: absolute;
-            width: 30vw;
-            height: 60vh;
-            left: 2vw;
-            top: 30vh;
-            width:25vw;
-            background-color: lightgray;
-            border: 2px solid black
-
-        }
-        .header{
-            text-align: center
-        }
-    </style>
-
-<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
-<script src='firebase_setup.js'></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+	<script src='firebase_setup.js'></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+<link href="default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
+<!--[if IE 6]>
+<link href="default_ie6.css" rel="stylesheet" type="text/css" />
+<![endif]-->
 </head>
-
-<body>
-    
-    <h1 id="heading">Meetup Page</h1>
-    <div class="topcorner">
-        <a href="group_page.html" class="links">Groups</a>
-        <a href="profile_page.html" class="links">Profile</a>
-        <a href = "login.html" onclick="FirebaseAuth.getInstance().signOut()">Log out</a>
-    </div>
-    <div id=meetupinfo>
-    </div>
-    <div id=grocerylist>
-        <h2 class=header>Grocery List</h2>
-    </div>
-    <div id=map>
-
-    </div>
-         <!--Begin Website Toolbox Forum Embed Code-->
-    <div id="discussion">
-        <iframe src="https://tmay.discussion.community/" style="width: 100%; height: 800px;"></iframe>
-    </div>
-        <!--End Website Toolbox Forum Embed Code-->
-    </div>
-    <script>
-        var meetupname = localStorage.getItem('meetupname')
-        var meetupday = localStorage.getItem('meetupday');
-        var meetuplocation = localStorage.getItem('meetuplocation');
-        var meetupmonth = localStorage.getItem('meetupmonth');
-        var meetupyear = localStorage.getItem('meetupyear');
-        var meetuphour = localStorage.getItem('meetuphour');
-        var meetupminute = localStorage.getItem('meetupminute');
-        document.getElementById('heading').innerHTML = meetupname
-        document.getElementById('meetupname').innerHTML = meetupname
-        document.getElementById('meetupinfo').innerHTML ='<h2> Meet-up Information</h2><h3>'+ 'Location: '+meetuplocation+'<br> Date: '+meetupday+'/'+meetupmonth+'/'+meetupyear+'<br> Time:'+meetuphour+':'+meetupminute + "</h3>"
-    </script>
+<body onload="setinfo()">
+<div id="wrapper">
+	<div id="header-wrapper">
+		<div id="header" class="container">
+			<div id="logo">
+				<h1><a href="#">Grocer Together</a></h1>
+				<p>Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a></p>
+			</div>
+		</div>
+		<div id="menu" class="container">
+			<ul>
+					<li><a href="#" accesskey="1" title="">HomePage</a></li>
+					<li><a href="create_group.html" accesskey="2" title="">Create New Group</a></li>
+					<li><a href="group_sort.html" accesskey="3" title="">Search for Groups</a></li>
+					<li><a href="Group_Page.html" accesskey="4" title="">Your Group</a></li>
+					<li><a href="profile_page.html" accesskey="5" title="">Profile</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="page" class="container">
+		<div id="sidebar1">
+			<div style='height: 550px' id="meetupslist">
+				<h2>Grocery List</h2>
+			</div>
+			<div id="box2">
+				
+			</div>
+		</div>
+			<div id="content">
+				<h2 id='meetupname'>meetup name</h2>
+				<p id='meetupinfo'>meetup info</p>
+				<p><img id='map' src="images/map.png" alt="map"></p>
+			</div>
+			<div id="sidebar2">
+				<div id= discussion>
+					<iframe src="https://tmay.discussion.community/" style="width: 100%; height: 800px;"></iframe>
+				</div>
+			</div>
+	</div>
+</div>
+<div id="footer">
+	<p>&copy; Untitled. All rights reserved. Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>. Photos by <a href="http://fotogrph.com/">Fotogrph</a>.</p>
+</div>
+<script src='Meetup_page.js'></script>
 </body>
-
 </html>
