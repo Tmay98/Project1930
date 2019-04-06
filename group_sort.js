@@ -1,4 +1,4 @@
-function clickHandler(){
+function displayGroups(){
     // using to write group information from the database
     var ref = firebase.database().ref("groups");
     ref.on(
@@ -76,3 +76,4 @@ function userLocation(lat, lng) {  // initializes a google map with passed coord
         });
 }
 
+displayGroups()
