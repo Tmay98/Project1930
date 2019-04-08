@@ -1,3 +1,4 @@
+// takes all database profile data to display on profile page
 var uid = null
         var displayName = null
         initApp = function () {
@@ -28,7 +29,7 @@ var uid = null
             initApp()
         });
 
-
+// saves form inputs to database
 function saveform() {
     var database = firebase.database();
     var form = document.getElementById("form");

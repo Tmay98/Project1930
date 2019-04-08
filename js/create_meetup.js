@@ -5,6 +5,8 @@ groupname = localStorage.getItem("groupname");
         year = ''
         hour = ''
         minute = ''
+        
+        // saves form with all meetup info to database and goes to group_page.html
         function saveform(){
             var meetupname = document.getElementById("meetupform").elements[0].value
             var month = document.getElementById("meetupform").elements[1].value

@@ -1,3 +1,4 @@
+// saves group info form to database
 function saveform(){
             
     var groupname = document.getElementById("groupform").elements[0].value

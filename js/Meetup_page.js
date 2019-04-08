@@ -1,3 +1,4 @@
+// displays all meetupinfo on meetup_page
 var meetupname = localStorage.getItem('meetupname')
 var meetupday = localStorage.getItem('meetupday');
 var meetuplocation = localStorage.getItem('meetuplocation');

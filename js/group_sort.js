@@ -1,3 +1,4 @@
+// displays all groups and info about them
 function displayGroups(){
     // using to write group information from the database
     var ref = firebase.database().ref("groups");
@@ -5,7 +6,7 @@ function displayGroups(){
         "value",
         function(snap){
             console.log('working');
-            
+            // displays every group from database
             snap.forEach(function(snap){
                 var groupname = snap.key;
                 var location = snap.child("location").val();
@@ -34,7 +35,7 @@ function removeElem(){
     document.getElementById('googleMap').style.display='none';
     document.getElementById('locationbtn').style.display='none'; 
 }
-function clickHandlerLocationMap(){            // onlclick passing the user location to the map for display
+function clickHandlerLocationMap(){            // onclick passing the user location to the map for display
     userLocation(49.283451, -123.115255)
     document.getElementById('googleMap').style.display="initial";
 

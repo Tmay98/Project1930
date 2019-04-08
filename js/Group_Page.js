@@ -1,3 +1,4 @@
+// sets all group page info and displays it
 function setinfo(){
     groupname = localStorage.getItem("groupname");
     grouplocation = localStorage.getItem("location");
@@ -6,6 +7,8 @@ function setinfo(){
     user = localStorage.getItem("name")
     document.getElementById('groupTitle').innerHTML = groupname;
     document.getElementById('summary').innerHTML = 'location: ' + grouplocation + ' (' + radius + ' km)'  + '<br>' + groupinfo;
+
+    // adds user to group then displays all users in that group
     var promise = firebase.database().ref("groups/" + groupname + '/users/' + user + '/').update({
         status: true
     });
@@ -24,13 +27,15 @@ function setinfo(){
             })
     })
 }
+
     var groupname = localStorage.getItem("groupname");
     var meetupnames = []
     var ref = firebase.database().ref("groups/" + groupname  + "/meetups");
+
+    // displays all meetups of a group in group page
     ref.on(
         "value",
         function(snap){
-            console.log("---Names of all members in " + groupname + " group");
             
             snap.forEach(function(snap){
                 var meetupname = snap.key;
