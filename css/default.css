@@ -5,12 +5,36 @@
     overflow: auto
 }
 
+#homePageContent {
+	float: left;
+	width: 800px;
+	text-align: center;
+	font-size: 1.2em;
+	height: 550px;
+	border-radius: 2em
+}
+
+#feature{
+	border-radius: 1em;
+	height: 2.2em;
+	display: inline-block;
+	width: 12em;
+	font-size: 1.2em;
+
+}
+
+#featuresList{
+	text-align: center
+}
+
 #googleMap{
     width:400px;
     height:400px;
-    top:55%;
-    left:36%;
-    position: absolute;
+	position: relative;
+	float: left;
+	width: 400px;
+	text-align: center;
+	background-color: beige;
 }
 
 #users{
@@ -18,6 +42,17 @@
     text-align: center;
 }
 
+#slogan{
+	font-size: 2em;
+	text-align: left;
+	position: relative;
+	top: 14px;
+	left: 20px;
+	color: floralwhite;
+
+
+
+}
 .meetup{
     text-align: center;
     display: block;
