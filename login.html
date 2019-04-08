@@ -10,34 +10,33 @@
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
     <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
     <script src='js/firebase_setup.js'></script>
-    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
-
-    <style>
-            .topcorner {
-                position: absolute;
-                top: 20px;
-                right: 90px;
-            }
-            .links {
-                padding-right: 30px;
-            }
-            #heading { 
-                background-color: lightskyblue
-            }
-        </style>
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+    <link href="css/default.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/fonts.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 
 <body>
+        <div id="wrapper">
+                <div id="header-wrapper">
+                    <div id="header" class="container">
+                         <div id="logo">
+                                <h1><a href="#">Grocer Together</a></h1>
+                                <p>Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a></p>
+                            </div>
+                    </div>
+                    <div id="menu" class="container">
+                        <p id='slogan'>Grow closer together, with Grocer Together!<p>
+                    </div>
+                </div>
+                <div id="page" class="container">
+                        
+                    <div id="homePageContent">
+                            <div id="firebaseui-auth-container"></div>
+                            <div id="loader">Loading...</div>
+                        <br><br>
+                    </div>
     <!-- The surrounding HTML is left untouched by FirebaseUI.
      Your app may use that space for branding, controls and other customizations.-->
-     <h1 id="heading">Login</h1>
-     <div class="topcorner">
-         <a href="group_page.html" class="links">Groups</a>
-         <a href="profile_page.html" class="links">Profile</a>
-     </div>
-    <div id="firebaseui-auth-container"></div>
-    <div id="loader">Loading...</div>
     <script>
         // Initialize the FirebaseUI Widget using Firebase.
         var ui = new firebaseui.auth.AuthUI(firebase.auth());
